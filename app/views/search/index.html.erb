@@ -1,14 +1,14 @@
 <h3> Station information </h3>
-<div class='station'> 
-  <div class='name'> Name: <%= @station_direction.name %> </div>
-  <div class='address'> Address: <%= @station_direction.address %> </div>
-  <div class='fuel_type'> Fuel Type: <%= @station_direction.fuel_type %> </div>
-  <div class='access_times'> Access Times: <%= @station_direction.access_times %> </div>
-</div>
+  <div class='station'> 
+    <div class='name'> Name: <%= @station_direction.name %> </div>
+    <div class='address'> Address: <%= @station_direction.address %> </div>
+    <div class='fuel_type'> Fuel Type: <%= @station_direction.fuel_type %> </div>
+    <div class='access_times'> Access Times: <%= @station_direction.access_times %> </div>
+  </div>
 
 <h3> Direction information </h3>
-<div class='direction'> 
-  <div class='distance'> Distance: <%= @station_direction.distance %> </div>
-  <div class='travel_time'> Travel Time: <%= @station_direction.travel_time %> </div>
-  <div class='direction_instructions'> Instructions: <%= @station_direction.direction_instructions.html_safe %> </div>
-</div>
+  <div class='direction'> 
+    <div class='distance'> Distance: <%= @station_direction.distance %> </div>
+    <div class='travel_time'> Travel Time: <%= @station_direction.travel_time %> </div>
+    <div class='direction_instructions'> Instructions: <%= @station_direction.direction_instructions.html_safe %> </div>
+  </div>

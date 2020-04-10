@@ -1,7 +1,6 @@
 class StationDirectionFacade
 
   def initialize(location) 
-
     response = FuelStationService.nearest_station_information(location)
     station_info = JSON.parse(response.body, symbolize_names: true)[:fuel_stations].first
     @station = Station.new(station_info)
@@ -9,8 +8,6 @@ class StationDirectionFacade
     response = GoogleDirectionService.direction_to_location(location, @station.address)
     direction_info = JSON.parse(response.body, symbolize_names: true)[:routes].first[:legs].first
     @direction = Direction.new(direction_info)
-
-    
   end 
 
   def name 

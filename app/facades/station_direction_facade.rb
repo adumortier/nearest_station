@@ -6,15 +6,11 @@ class StationDirectionFacade
     station_info = JSON.parse(response.body, symbolize_names: true)[:fuel_stations].first
     @station = Station.new(station_info)
 
-    conn2 = Faraday.new "https://maps.googleapis.com/maps/api" do |conn|
-      conn.params['key'] = ENV['GOOGLE_MAP_API_KEY']
-    end
-    response = conn2.get('directions/json?') do |req|
-      req.params['origin'] = location
-      req.params['destination'] = @station.address
-    end
-    result = JSON.parse(response.body, symbolize_names: true)[:routes].first[:legs].first
-    @direction = Direction.new(result)
+    response = GoogleDirectionService.direction_to_location(location, @station.address)
+    direction_info = JSON.parse(response.body, symbolize_names: true)[:routes].first[:legs].first
+    @direction = Direction.new(direction_info)
+
+    
   end 
 
   def name 

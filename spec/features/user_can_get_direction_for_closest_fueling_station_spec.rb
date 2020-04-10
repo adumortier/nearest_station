@@ -11,10 +11,12 @@ RSpec.describe "As a user" , type: :feature do
       expect(current_path).to eq('/search')
 
       expect(page).to have_css('.station')
-      expect(first(".name").text).to_not be_empty
-      expect(first(".address").text).to_not be_empty
-      expect(first(".fuel_type").text).to_not be_empty
-      expect(first(".access_times").text).to_not be_empty
+      within('.station') do
+        expect(first(".name").text).to_not be_empty
+        expect(first(".address").text).to_not be_empty
+        expect(first(".fuel_type").text).to_not be_empty
+        expect(first(".access_times").text).to_not be_empty
+      end
     end
 
   end

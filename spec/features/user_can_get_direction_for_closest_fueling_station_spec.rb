@@ -10,12 +10,17 @@ RSpec.describe "As a user" , type: :feature do
       click_on 'Find Nearest Station'
       expect(current_path).to eq('/search')
 
-      expect(page).to have_css('.station')
       within('.station') do
         expect(first(".name").text).to_not be_empty
         expect(first(".address").text).to_not be_empty
         expect(first(".fuel_type").text).to_not be_empty
         expect(first(".access_times").text).to_not be_empty
+      end
+
+      within('.direction') do
+        expect(first(".distance").text).to_not be_empty
+        expect(first(".travel_time").text).to_not be_empty
+        expect(first(".direction_instructions").text).to_not be_empty
       end
     end
 

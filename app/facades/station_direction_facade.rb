@@ -1,14 +1,10 @@
 class StationDirectionFacade
 
   def initialize(location) 
-    conn1 = Faraday.new "https://developer.nrel.gov/api/alt-fuel-stations/v1" do |conn|
-      conn.params['api_key'] = ENV['DEV_NETWORK_API_KEY']
-    end
-    response = conn1.get('nearest.json?') do |req|
-      req.params['location'] = location
-      req.params['fuel_type'] = 'ELEC'
-    end
-    @station = Station.new(JSON.parse(response.body, symbolize_names: true)[:fuel_stations].first)
+
+    response = FuelStationService.nearest_station_information(location)
+    station_info = JSON.parse(response.body, symbolize_names: true)[:fuel_stations].first
+    @station = Station.new(station_info)
 
     conn2 = Faraday.new "https://maps.googleapis.com/maps/api" do |conn|
       conn.params['key'] = ENV['GOOGLE_MAP_API_KEY']
